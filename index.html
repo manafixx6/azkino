@@ -3,42 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KinoDünyası | Poster Wall & Stream</title>
+    <title>KinoDünyası | Premium</title>
     <style>
-    * { box-sizing: border-box; }
-
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        background-color: #000;
-        /* Bu link daha stabildir və kolaj tərzi verir */
-        background-image: 
-            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-            url('https://wallpapercave.com/wp/wp1945909.jpg');
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: #fff;
-        min-height: 100vh;
-    }
-    
-    /* Digər bütün kodların (header, card, modal və s.) olduğu kimi qalsın */
-</style>
-
+        /* ÜMUMİ AYARLAR */
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #000;
+            /* Arxa fon sənin kolaj şəklin olacaq */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                              url('1000370157.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            min-height: 100vh;
         }
 
+        /* ÜST MENYU (HEADER) */
         header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            text-align: center;
             border-bottom: 3px solid #e50914;
             position: sticky;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
 
         .logo {
@@ -47,11 +40,11 @@
             color: #e50914;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-decoration: none;
         }
 
-        .main-content {
-            max-width: 1300px;
+        /* FİLM ŞƏBƏKƏSİ (GRID) */
+        .container {
+            max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -62,14 +55,14 @@
             gap: 25px;
         }
 
-        /* Kart Dizaynı */
+        /* FİLM KARTI */
         .card {
-            background: #181818;
+            background: #141414;
             border-radius: 12px;
             overflow: hidden;
-            transition: 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .card:hover {
@@ -91,21 +84,18 @@
         .card-body h3 {
             margin: 0;
             font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-weight: 600;
         }
 
-        .info {
+        .meta {
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
             font-size: 13px;
             color: #f5c518;
-            font-weight: bold;
         }
 
-        /* MODAL (Video Pəncərəsi) */
+        /* VİDEO PƏNCƏRƏSİ (MODAL) */
         .modal {
             display: none;
             position: fixed;
@@ -134,63 +124,71 @@
             top: -45px;
             right: 0;
             color: #fff;
-            font-size: 35px;
+            font-size: 40px;
             cursor: pointer;
+            line-height: 1;
         }
 
+        /* MOBİL UYĞUNLUQ */
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .logo { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">KinoDünyası</div>
-</header>
+    <header>
+        <div class="logo">KinoDünyası</div>
+    </header>
 
-<div class="main-content">
-    <div class="grid">
-        
-        <div class="card" onclick="openPlayer('https://ok.ru/videoembed/7178213722625')">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg" alt="Issız Ev">
-            <div class="card-body">
-                <h3>Issız Ev (The Orphanage)</h3>
-                <div class="info">
-                    <span>2007</span>
-                    <span>⭐ 7.4</span>
+    <div class="container">
+        <div class="grid">
+            
+            <div class="card" onclick="openPlayer('https://ok.ru/videoembed/7178213722625')">
+                <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg" alt="Issız Ev">
+                <div class="card-body">
+                    <h3>Issız Ev (The Orphanage)</h3>
+                    <div class="meta">
+                        <span>2007</span>
+                        <span>⭐ 7.4</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        </div>
-</div>
-
-<div id="videoModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closePlayer()">&times;</span>
-        <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
     </div>
-</div>
 
-<script>
-    function openPlayer(url) {
-        document.getElementById('videoFrame').src = url;
-        document.getElementById('videoModal').style.display = 'flex';
-    }
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePlayer()">&times;</span>
+            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 
-    function closePlayer() {
-        document.getElementById('videoModal').style.display = 'none';
-        document.getElementById('videoFrame').src = '';
-    }
-
-    // Boş yerə basanda bağlansın
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('videoModal')) {
-            closePlayer();
+    <script>
+        function openPlayer(videoUrl) {
+            var modal = document.getElementById('videoModal');
+            var frame = document.getElementById('videoFrame');
+            frame.src = videoUrl;
+            modal.style.display = 'flex';
         }
-    }
-</script>
+
+        function closePlayer() {
+            var modal = document.getElementById('videoModal');
+            var frame = document.getElementById('videoFrame');
+            modal.style.display = 'none';
+            frame.src = ''; // Videonu dayandırır
+        }
+
+        // Pəncərədən kənara basanda bağlansın
+        window.onclick = function(event) {
+            var modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closePlayer();
+            }
+        }
+    </script>
 
 </body>
 </html>
