@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KinoDünyası | Premium</title>
     <style>
-        /* ÜMUMİ AYARLAR */
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: #000;
-            /* Arxa fon sənin kolaj şəklin olacaq */
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            /* Arxa fon şəkli */
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                               url('1000370157.jpg');
             background-attachment: fixed;
             background-size: cover;
@@ -23,9 +20,8 @@
             min-height: 100vh;
         }
 
-        /* ÜST MENYU (HEADER) */
         header {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             padding: 20px;
             text-align: center;
             border-bottom: 3px solid #e50914;
@@ -34,68 +30,30 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: #e50914;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* FİLM ŞƏBƏKƏSİ (GRID) */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .logo { font-size: 26px; font-weight: 900; color: #e50914; text-transform: uppercase; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 40px 5%;
         }
 
-        /* FİLM KARTI */
         .card {
             background: #141414;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: 0.3s ease;
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            border-color: #e50914;
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
-        }
+        .card:hover { transform: scale(1.05); border-color: #e50914; }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .meta { color: #f5c518; font-size: 13px; font-weight: bold; margin-top: 5px; }
 
-        .card img {
-            width: 100%;
-            aspect-ratio: 2/3;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .card-body h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 13px;
-            color: #f5c518;
-        }
-
-        /* VİDEO PƏNCƏRƏSİ (MODAL) */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -106,57 +64,25 @@
             align-items: center;
         }
 
-        .modal-content {
-            width: 95%;
-            max-width: 900px;
-            position: relative;
-        }
+        .modal-content { width: 95%; max-width: 850px; position: relative; }
+        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #333; }
+        .close-btn { position: absolute; top: -45px; right: 0; color: #fff; font-size: 40px; cursor: pointer; }
 
-        .modal-content iframe {
-            width: 100%;
-            aspect-ratio: 16/9;
-            border-radius: 8px;
-            border: 2px solid #333;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            color: #fff;
-            font-size: 40px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        /* MOBİL UYĞUNLUQ */
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .logo { font-size: 22px; }
-        }
+        @media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">KinoDünyası</div>
-    </header>
+    <header><div class="logo">KinoDünyası</div></header>
 
-    <div class="container">
-        <div class="grid">
-            
-            <div class="card" onclick="openPlayer('https://ok.ru/videoembed/7178213722625')">
-                <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg" alt="Issız Ev">
-                <div class="card-body">
-                    <h3>Issız Ev (The Orphanage)</h3>
-                    <div class="meta">
-                        <span>2007</span>
-                        <span>⭐ 7.4</span>
-                    </div>
-                </div>
+    <div class="grid">
+        <div class="card" onclick="openPlayer('https://ok.ru/videoembed/7178213722625')">
+            <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg">
+            <div class="card-body">
+                <h3>Issız Ev (The Orphanage)</h3>
+                <div class="meta">⭐ 7.4 | 2007</div>
             </div>
-
-            </div>
+        </div>
     </div>
 
     <div id="videoModal" class="modal">
@@ -167,26 +93,13 @@
     </div>
 
     <script>
-        function openPlayer(videoUrl) {
-            var modal = document.getElementById('videoModal');
-            var frame = document.getElementById('videoFrame');
-            frame.src = videoUrl;
-            modal.style.display = 'flex';
+        function openPlayer(url) {
+            document.getElementById('videoFrame').src = url;
+            document.getElementById('videoModal').style.display = 'flex';
         }
-
         function closePlayer() {
-            var modal = document.getElementById('videoModal');
-            var frame = document.getElementById('videoFrame');
-            modal.style.display = 'none';
-            frame.src = ''; // Videonu dayandırır
-        }
-
-        // Pəncərədən kənara basanda bağlansın
-        window.onclick = function(event) {
-            var modal = document.getElementById('videoModal');
-            if (event.target == modal) {
-                closePlayer();
-            }
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('videoFrame').src = '';
         }
     </script>
 
