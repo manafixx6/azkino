@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KinoDünyası | Premium</title>
     <style>
+        /* Bütün artıq boşluqları silirik */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050505;
-            /* Arxa fon şəkli */
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+            background-color: #000;
+            /* SƏNİN ŞƏKLİN BURADA İŞLƏYİR */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                               url('1000370157.jpg');
             background-attachment: fixed;
             background-size: cover;
@@ -20,8 +21,9 @@
             min-height: 100vh;
         }
 
+        /* Üst Menyu */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             padding: 20px;
             text-align: center;
             border-bottom: 3px solid #e50914;
@@ -30,8 +32,15 @@
             z-index: 1000;
         }
 
-        .logo { font-size: 26px; font-weight: 900; color: #e50914; text-transform: uppercase; }
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            color: #e50914;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
+        /* Filmlərin düzülüşü */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -39,21 +48,27 @@
             padding: 40px 5%;
         }
 
+        /* Film Kartı */
         .card {
             background: #141414;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: 0.3s;
         }
 
-        .card:hover { transform: scale(1.05); border-color: #e50914; }
+        .card:hover {
+            transform: scale(1.05);
+            border-color: #e50914;
+        }
+
         .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; }
         .card-body { padding: 15px; }
-        .meta { color: #f5c518; font-size: 13px; font-weight: bold; margin-top: 5px; }
+        .card-body h3 { font-size: 15px; margin-bottom: 5px; }
+        .meta { color: #f5c518; font-size: 13px; font-weight: bold; }
 
-        /* MODAL */
+        /* Video Pəncərəsi */
         .modal {
             display: none;
             position: fixed;
@@ -65,10 +80,26 @@
         }
 
         .modal-content { width: 95%; max-width: 850px; position: relative; }
-        iframe { width: 100%; aspect-ratio: 16/9; border-radius: 8px; border: 2px solid #333; }
-        .close-btn { position: absolute; top: -45px; right: 0; color: #fff; font-size: 40px; cursor: pointer; }
+        
+        iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            border: 2px solid #333;
+        }
 
-        @media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        .close-btn {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -77,7 +108,7 @@
 
     <div class="grid">
         <div class="card" onclick="openPlayer('https://ok.ru/videoembed/7178213722625')">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg">
+            <img src="https://m.media-amazon.com/images/M/MV5BMjA0MTM1NTAyN15BMl5BanBnXkFtZTgwNjY2MTA1MjE@._V1_.jpg" alt="Issız Ev">
             <div class="card-body">
                 <h3>Issız Ev (The Orphanage)</h3>
                 <div class="meta">⭐ 7.4 | 2007</div>
@@ -97,9 +128,14 @@
             document.getElementById('videoFrame').src = url;
             document.getElementById('videoModal').style.display = 'flex';
         }
+
         function closePlayer() {
             document.getElementById('videoModal').style.display = 'none';
             document.getElementById('videoFrame').src = '';
+        }
+
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('videoModal')) closePlayer();
         }
     </script>
 
