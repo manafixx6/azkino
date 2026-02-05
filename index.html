@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinoDünyası | Premium Film Portalı</title>
+    <style>
+        :root {
+            --primary-color: #ff3d00;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: radial-gradient(circle at top right, #1a1a2e, #0f0f0f);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Arxa fonda dumanlı estetik şəkil */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000') no-repeat center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        header {
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .hero {
+            padding: 20px 5% 60px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 30px;
+        }
+
+        /* Kartların yeni "Premium" dizaynı */
+        .movie-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .movie-card img {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .movie-info {
+            padding: 15px;
+        }
+
+        .movie-info h3 {
+            font-size: 15px;
+            margin: 0;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .badge {
+            background: rgba(255, 61, 0, 0.2);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Mobil uyğunluq */
+        @media (max-width: 600px) {
+            .container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .logo { font-size: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">KinoDünyası</div>
+    <div class="nav-links">
+        <a href="#">Ana Səhifə</a>
+        <a href="#">Filmlər</a>
+        <a href="#">Seriallar</a>
+        <a href="#">Trend</a>
+    </div>
+</header>
+
+<div class="hero">
+    <h2 class="section-title">AzKinos</h2>
+    <div class="container">
+        <div class="movie-card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6EJBQwQvovu2JuXUR9X.jpg" alt="Interstellar">
+            <div class="movie-info">
+                <h3>Interstellar</h3>
+                <div class="meta">
+                    <span>2014</span>
+                    <span class="badge">⭐ 8.7</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/o06R7M9vScl99Vf9pA9X26A69S5.jpg" alt="Inception">
+            <div class="movie-info">
+                <h3>Inception</h3>
+                <div class="meta">
+                    <span>2010</span>
+                    <span class="badge">⭐ 8.8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/74xTEgt7R36Fpooo50r9T6f4uC3.jpg" alt="The Batman">
+            <div class="movie-info">
+                <h3>The Batman</h3>
+                <div class="meta">
+                    <span>2022</span>
+                    <span class="badge">⭐ 7.8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9V9pVAV1S6p26Y68vYI9vTf8l3N.jpg" alt="Supernatural">
+            <div class="movie-info">
+                <h3>Supernatural</h3>
+                <div class="meta">
+                    <span>Serial</span>
+                    <span class="badge">⭐ 8.4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
