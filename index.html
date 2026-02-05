@@ -3,154 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KinoDünyası | Premium Film Portalı</title>
+    <title>KinoDünyası | Poster Wall Edition</title>
     <style>
-        :root {
-            --primary-color: #ff3d00;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: radial-gradient(circle at top right, #1a1a2e, #0f0f0f);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000;
+            /* Sənin göndərdiyin kolaj tərzində yüksək keyfiyyətli arxa fon */
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+                url('https://w0.peakpx.com/wallpaper/189/125/HD-wallpaper-movie-poster-collage.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
             color: #fff;
             min-height: 100vh;
         }
 
-        /* Arxa fonda dumanlı estetik şəkil */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000') no-repeat center/cover;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
+        /* Üst menyu - Netflix qırmızısı və şüşə effekti */
         header {
-            padding: 40px 5%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 5%;
+            border-bottom: 3px solid #e50914;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
 
         .logo {
             font-size: 28px;
-            font-weight: 800;
-            color: var(--primary-color);
+            font-weight: 900;
+            color: #e50914;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #ccc;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
+            text-shadow: 2px 2px 10px rgba(229, 9, 20, 0.3);
         }
 
-        .nav-links a:hover { color: #fff; }
-
-        .hero {
-            padding: 20px 5% 60px;
+        /* Əsas Konteyner */
+        .main-content {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        .section-title {
-            font-size: 22px;
+        .section-header {
+            font-size: 24px;
             margin-bottom: 30px;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .container {
+        .section-header::before {
+            content: "";
+            width: 5px;
+            height: 25px;
+            background: #e50914;
+            border-radius: 10px;
+        }
+
+        /* Posterlərin düzülüşü */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
         }
 
-        /* Kartların yeni "Premium" dizaynı */
-        .movie-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+        /* Premium Kart Dizaynı */
+        .card {
+            background: #181818;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
-        .movie-card:hover {
-            transform: scale(1.05) translateY(-10px);
-            border-color: var(--primary-color);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        .card:hover {
+            transform: scale(1.07);
+            border-color: #e50914;
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
         }
 
-        .movie-card img {
+        .card img {
             width: 100%;
             aspect-ratio: 2/3;
             object-fit: cover;
-            border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s;
         }
 
-        .movie-info {
+        .card-body {
             padding: 15px;
+            background: linear-gradient(to top, #121212, #181818);
         }
 
-        .movie-info h3 {
-            font-size: 15px;
+        .card-body h3 {
             margin: 0;
+            font-size: 16px;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .meta {
+        .info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
-            font-size: 12px;
-            color: #aaa;
         }
 
-        .badge {
-            background: rgba(255, 61, 0, 0.2);
-            color: var(--primary-color);
+        .rating {
+            background: rgba(245, 197, 24, 0.1);
+            color: #f5c518;
             padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 13px;
         }
 
-        /* Mobil uyğunluq */
+        .year {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Mobil üçün xüsusi nizam */
         @media (max-width: 600px) {
-            .container { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .logo { font-size: 20px; }
-            .nav-links { display: none; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .logo { font-size: 22px; }
+            .card-body h3 { font-size: 14px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">KinoDünyası</div>
-    <div class="nav-links">
-        <a href="#">Ana Səhifə</a>
-        <a href="#">Filmlər</a>
-        <a href="#">Seriallar</a>
-        <a href="#">Trend</a>
-    </div>
+    <a href="#" class="logo">KinoDünyası</a>
 </header>
+
+<div class="main-content">
+    <div class="section-header">Trenddə Olanlar</div>
+    
+    <div class="grid">
+        <div class="card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6EJBQwQvovu2JuXUR9X.jpg" alt="Interstellar">
+            <div class="card-body">
+                <h3>Interstellar</h3>
+                <div class="info-row">
+                    <span class="year">2014</span>
+                    <span class="rating">⭐ 8.7</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/o06R7M9vScl99Vf9pA9X26A69S5.jpg" alt="Inception">
+            <div class="card-body">
+                <h3>Inception</h3>
+                <div class="info-row">
+                    <span class="year">2010</span>
+                    <span class="rating">⭐ 8.8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/74xTEgt7R36Fpooo50r9T6f4uC3.jpg" alt="The Batman">
+            <div class="card-body">
+                <h3>The Batman</h3>
+                <div class="info-row">
+                    <span class="year">2022</span>
+                    <span class="rating">⭐ 7.8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9V9pVAV1S6p26Y68vYI9vTf8l3N.jpg" alt="Supernatural">
+            <div class="card-body">
+                <h3>Supernatural</h3>
+                <div class="info-row">
+                    <span class="year">Serial</span>
+                    <span class="rating">⭐ 8.4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
 
 <div class="hero">
     <h2 class="section-title">AzKinos</h2>
